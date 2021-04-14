@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LocationModelCodigoInputRequest {
 
-	@NotNull
+	@NotNull(message = "Id não pode ser nulo")
 	private Long id;
 
 }
