@@ -55,4 +55,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return this.departmentRepository.findAll(pageable).map(depart -> this.departmentResponse.map(depart));
 	}
 
+	@Override
+	public Page<DepartmentModelResponse> findAllTest(String keyword, Pageable pageable) {
+		log.info("Buscar por name e city da location");
+		Assert.notNull(pageable, "Página inválida");
+		return null;
+	}
+
+	
+
 }

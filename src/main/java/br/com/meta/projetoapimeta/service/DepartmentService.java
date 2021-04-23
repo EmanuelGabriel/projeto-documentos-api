@@ -11,5 +11,7 @@ public interface DepartmentService {
 	DepartmentModelResponse criar(DepartmentModelInputRequest request);
 
 	Page<DepartmentModelResponse> findAll(Pageable pageable);
+	
+	Page<DepartmentModelResponse> findAllTest(String keyword, Pageable pageable);
 
 }

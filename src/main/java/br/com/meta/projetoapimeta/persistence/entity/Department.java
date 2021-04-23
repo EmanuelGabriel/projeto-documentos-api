@@ -39,7 +39,7 @@ public class Department implements Serializable {
 	@Column(name = "department_name", nullable = false, length = 30)
 	private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
 
