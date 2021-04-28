@@ -50,7 +50,7 @@ public class DepartmentResourceImpl implements DepartmentResourceService {
 			@RequestParam(value = "size", defaultValue = "5", required = false) Integer size,
 			@RequestParam(value = "buscar", required = false) String keyword) {
 		
-		log.info("GET //v1/departments/test - keyword: {}", keyword);
+		log.info("GET /v1/departments/buscar - keyword: {}", keyword);
 		Page<Department> pageDepartment = departmentRepository.buscarPor(keyword, PageRequest.of(page, size, Sort.by("name")));
 		Page<DepartmentModelResponse> pageModelResponse = pageDepartment.map(obj -> new DepartmentModelResponse(obj));
 		return pageModelResponse != null ? ResponseEntity.ok(pageModelResponse) : ResponseEntity.ok().build();
