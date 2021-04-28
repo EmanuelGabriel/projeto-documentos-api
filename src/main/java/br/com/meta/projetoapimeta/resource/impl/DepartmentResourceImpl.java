@@ -43,12 +43,12 @@ public class DepartmentResourceImpl implements DepartmentResourceService {
 		this.departmentRepository = departmentRepository;
 	}
 
-	@GetMapping(value = "test")
+	@GetMapping(value = "buscar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<DepartmentModelResponse>> findAllTest(
 			@PageableDefault(page = 0, size = 5, direction = Direction.ASC) 
 			@RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
 			@RequestParam(value = "size", defaultValue = "5", required = false) Integer size,
-			@RequestParam(value = "keyword", required = false) String keyword) {
+			@RequestParam(value = "buscar", required = false) String keyword) {
 		
 		log.info("GET //v1/departments/test - keyword: {}", keyword);
 		Page<Department> pageDepartment = departmentRepository.buscarPor(keyword, PageRequest.of(page, size, Sort.by("name")));
