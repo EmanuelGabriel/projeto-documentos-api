@@ -1,0 +1,5 @@
+--INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES (1, 'Rua Clodoalto Neres', 1241, 'Teresina', 'Piauí');
+--INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES (2, 'Av. Nunes Cabral', 19087, 'São Luis', 'Maranhão');
+--INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES (3, 'Av Frei Serafim', 20955, 'Teresina', 'Piauí');
+--INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES (4, 'Rua Boca Chica', 1192, 'São Paulo', 'São Paulo');
+--INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES (5, 'Avenida Eduardo Costa', 77376, 'Crato', 'Ceará');
