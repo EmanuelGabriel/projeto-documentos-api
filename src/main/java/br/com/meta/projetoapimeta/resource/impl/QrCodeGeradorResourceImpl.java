@@ -25,9 +25,11 @@ import br.com.meta.projetoapimeta.model.response.GeradorQrCodeModelResponse;
 import br.com.meta.projetoapimeta.service.QrCodeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name = "Gerador QRCode", description = "Recurso do Gerador QRCode")
 @Slf4j
 @RestController
 @RequestMapping(value = "/v1/gerador-qrcode", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,8 +41,7 @@ public class QrCodeGeradorResourceImpl {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@Operation(summary = "Retorna um código QR .png com as informações fornecidas decodificadas dentro")
-	public void qrCodeGenerationHandler(
-			@Valid @RequestBody(required = true) final GeradorQrCodeModelRequest dto,
+	public void qrCodeGenerationHandler(@Valid @RequestBody(required = true) final GeradorQrCodeModelRequest dto,
 			final HttpServletResponse httpServletResponse) throws IOException, WriterException {
 		log.info("POST /v1/gerador-qrcode {}", dto);
 		codeService.gerarQrCode(dto, httpServletResponse);
@@ -48,11 +49,11 @@ public class QrCodeGeradorResourceImpl {
 
 	@PutMapping(value = "/ler-qrcode", consumes = "multipart/form-data")
 	@ResponseStatus(value = HttpStatus.OK)
-	@Operation(summary = "retorna informações decodificadas dentro do código QR fornecido")
+	@Operation(summary = "retorna informações decodificadas dentro do código QRCode fornecido")
 	public ResponseEntity<GeradorQrCodeModelResponse> ler(
-			@Parameter(description = "Imagem .png do código QR gerado através deste portal") @RequestParam(value = "file", required = true) MultipartFile file)
+			@Parameter(description = "Imagem .png do código QR gerado através desta API") @RequestParam(value = "file", required = true) MultipartFile file)
 			throws IOException, NotFoundException {
-		log.info("PUT /v1/gerador-qrcode {}", file);
+		log.info("PUT /v1/gerador-qrcode 'nome: {} - tamanho: {} - Tipo de Conteúdo: {}'", file.getOriginalFilename(), file.getSize(), file.getContentType());
 		return ResponseEntity.ok(codeService.lerQrCode(file));
 	}
 

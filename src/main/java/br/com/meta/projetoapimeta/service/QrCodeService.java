@@ -28,11 +28,16 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import br.com.meta.projetoapimeta.model.request.GeradorQrCodeModelRequest;
 import br.com.meta.projetoapimeta.model.response.GeradorQrCodeModelResponse;
 import lombok.var;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class QrCodeService {
 
+	
+	
 	public GeradorQrCodeModelResponse lerQrCode(final MultipartFile arquivo) throws IOException, NotFoundException {
+		log.info("Lendo o QR code 'Nome: {} - Tipo de Conteúdo: {}'", arquivo.getOriginalFilename(), arquivo.getContentType());
 		BufferedImage bufferedImage = ImageIO.read(arquivo.getInputStream());
 		LuminanceSource luminanceSource = new BufferedImageLuminanceSource(bufferedImage);
 		BinaryBitmap binarioBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
@@ -40,10 +45,12 @@ public class QrCodeService {
 		return new ObjectMapper().readValue(resultado.getText(), GeradorQrCodeModelResponse.class);
 	}
 
+	
+	
 	public void gerarQrCode(final GeradorQrCodeModelRequest dto, final HttpServletResponse httpServletResponse)
 			throws IOException, WriterException {
-		httpServletResponse.setHeader(HttpHeaders.CONTENT_DISPOSITION,
-				"attachment;filename=" + dto.getTitulo().trim().replace(" ", "_") + ".png");
+		log.info("Gerar um QR code {}", dto);
+		httpServletResponse.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + dto.getTitulo().trim().replace(" ", "_") + ".png"); //".png");
 
 		final var outputStream = new BufferedOutputStream(httpServletResponse.getOutputStream());
 		QRCodeWriter writer = new QRCodeWriter();

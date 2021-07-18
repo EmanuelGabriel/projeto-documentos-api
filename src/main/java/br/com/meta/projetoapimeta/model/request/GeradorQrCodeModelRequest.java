@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Builder
 @NoArgsConstructor
@@ -25,12 +27,12 @@ public class GeradorQrCodeModelRequest {
 	@Size(max = 5000, message = "O campo mensagem não pode exceder a 5000 caracteres")
 	private String mensagem;
 
-	@Schema(description = "Name of person generating the QR code ", required = true, example = "Hardik Singh Behl")
-	@NotBlank(message = "generated-by-name must not be empty")
+	@Schema(description = "Nome da pessoa que gerou o QR code ", required = true, example = "Pedro Alves Cabral")
+	@NotBlank(message = "O campo geradoPor não pode ser vazio")
 	private String geradoPor;
 
-	@Schema(description = "Name of person(s) for which code is being generated", required = true, example = "For Whole World")
-	@NotBlank(message = "generated-for-name must not be empty")
+	@Schema(description = "Nome da pessoa que irá receber o QR code gerado", required = true, example = "Fulano de tal")
+	@NotBlank(message = "O campo geradoPara não pode ser vazio")
 	private String geradoPara;
 
 }

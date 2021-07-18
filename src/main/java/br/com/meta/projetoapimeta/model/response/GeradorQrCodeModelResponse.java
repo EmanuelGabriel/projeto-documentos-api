@@ -16,10 +16,10 @@ public class GeradorQrCodeModelResponse {
 	@Schema(description = "Mensagem que você deseja decodificar", required = true, example = "Uma mensagem aqui")
 	private String mensagem;
 
-	@Schema(description = "Name of person generating the QR code ", required = true, example = "Hardik Singh Behl")
+	@Schema(description = "Nome da pessoa que foi gerado o QR code ", required = true, example = "Pedro Alves Cabral")
 	private String geradoPor;
 
-	@Schema(description = "Name of person(s) for which code is being generated", required = true, example = "For Whole World")
+	@Schema(description = "Nome da pessoa que irá receber o QRCode", required = true, example = "Fulano de tal")
 	private String geradoPara;
 
 }
